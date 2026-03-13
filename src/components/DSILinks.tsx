@@ -8,7 +8,7 @@ interface DSILinksProps {
 }
 
 export function DSILinks({ basin }: DSILinksProps) {
-  const links = basin.links;
+  const links = basin.dsiLinks;
 
   if (!links || links.length === 0) return null;
 
@@ -21,7 +21,7 @@ export function DSILinks({ basin }: DSILinksProps) {
             <Info className="h-4 w-4 text-muted-foreground hover:text-primary cursor-help flex-shrink-0 transition-colors" />
           </TooltipTrigger>
           <TooltipContent className="max-w-[280px] text-xs">
-            Seçili havzaya ait resmi DSİ ve MGMM veri kaynaklarına doğrudan bağlantılar. Bu kaynaklar baraj doluluk oranları, nehir akış istatistikleri ve iklim gzlem verilerini içerir.
+            Seçili havzaya ait resmi DSİ ve MGMM veri kaynaklarına doğrudan bağlantılar. Bu kaynaklar baraj doluluk oranları, nehir akış istatistikleri ve iklim gözlem verilerini içerir.
           </TooltipContent>
         </Tooltip>
       </div>
