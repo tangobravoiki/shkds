@@ -23,7 +23,7 @@ const CARD_CONFIGS = [
     key: 'sıcaklık',
     icon: Thermometer,
     label: 'Sıcaklık',
-    getValue: (w: WeatherData | null) => w ? `${w.temperature_2m}°C` : '--',
+    getValue: (w: WeatherData | null) => w ? `${w.temperature}°C` : '--',
     getUnit: () => 'Anlık',
     color: 'text-orange-400',
   },
@@ -31,7 +31,7 @@ const CARD_CONFIGS = [
     key: 'toprak',
     icon: Droplets,
     label: 'Toprak Nemi',
-    getValue: (w: WeatherData | null) => w ? `${(w.soil_moisture_0_to_7cm * 100).toFixed(1)}%` : '--',
+    getValue: (w: WeatherData | null) => w ? `${(w.soilMoisture * 100).toFixed(1)}%` : '--',
     getUnit: () => '0-7cm',
     color: 'text-blue-400',
   },
@@ -39,7 +39,7 @@ const CARD_CONFIGS = [
     key: 'rüzgar',
     icon: Wind,
     label: 'Rüzgar',
-    getValue: (w: WeatherData | null) => w ? `${w.wind_speed_10m} km/s` : '--',
+    getValue: (w: WeatherData | null) => w ? `${w.windSpeed} km/s` : '--',
     getUnit: () => 'Anlık',
     color: 'text-cyan-400',
   },
@@ -55,7 +55,7 @@ const CARD_CONFIGS = [
     key: 'nüfus',
     icon: Users,
     label: 'Nüfus (TR)',
-    getValue: () => '85.0M',
+    getValue: (_w: WeatherData | null, _t: ThermalAnomaly | null, pop: number) => `${(pop / 1_000_000).toFixed(1)}M`,
     getUnit: () => 'Dünya Bankası',
     color: 'text-purple-400',
   },
@@ -89,7 +89,7 @@ export function MetricCards({ weather, thermal, population, loading }: MetricCar
             </Tooltip>
           </div>
           <div className="text-lg font-bold font-mono text-foreground">
-            {getValue(weather, thermal)}
+            {getValue(weather, thermal, population)}
           </div>
           <div className="text-[9px] text-muted-foreground font-mono">
             {getUnit(thermal)}
