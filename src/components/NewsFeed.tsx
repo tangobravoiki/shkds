@@ -40,7 +40,7 @@ export function NewsFeed({ news, loading }: NewsFeedProps) {
             <Tooltip key={i}>
               <TooltipTrigger asChild>
                 <a
-                  href={item.url}
+                  href={item.link}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-start gap-1.5 text-[10px] font-mono text-muted-foreground hover:text-foreground transition-colors py-1 border-b border-border/30 last:border-0 group"
@@ -50,7 +50,7 @@ export function NewsFeed({ news, loading }: NewsFeedProps) {
                 </a>
               </TooltipTrigger>
               <TooltipContent className="max-w-[260px] text-xs">
-                OSINT kaynağı: {item.source ?? 'RSS'} — Bağlantıya tıklayarak haberin tam metnine ulaşabilirsiniz.
+                OSINT kaynağı: {item.source} — Bağlantıya tıklayarak haberin tam metnine ulaşabilirsiniz.
               </TooltipContent>
             </Tooltip>
           ))}
