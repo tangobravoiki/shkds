@@ -22,15 +22,20 @@ export function Header({ selectedBasin, onBasinChange, onExportJSON, onExportTXT
               <Shield className="h-6 w-6 text-primary cursor-help" />
             </TooltipTrigger>
             <TooltipContent className="max-w-[260px] text-xs">
-              Sınıraşan Havzalar Karar Destek Sistemi (KDS) v4.2. NATO standartlarına uygun hidropolitik risk değerlendirme platformu. Gerçek zamanlı meteoroloji, termal anomali ve OSINT verilerini birleştirerek bütünleşik risk skoru hesaplar.
+              Sınıraşan Havzalar Karar Destek Sistemi (KDS) v4.2. NATO standartlarına uygun hidropolitik risk değlendirme platformu. Gerçek zamanlı meteoroloji, termal anomali ve OSINT verilerini birleştirerek bütünleşik risk skoru hesaplar.
             </TooltipContent>
           </Tooltip>
           <div>
-            <h1 className="text-lg font-bold tracking-wider text-primary glow-text">SINIRAŞAN HAVZALAR KDS</h1>
-            <p className="text-xs text-muted-foreground font-mono">v4.2 — Hidropolitik Karar Destek Sistemi</p>
+            <div className="text-sm font-bold text-primary font-mono tracking-wide">
+              SINIRAŞAN HAVZALAR KDS
+            </div>
+            <div className="text-[10px] text-muted-foreground font-mono">
+              v4.2 — Hidropolitik Karar Destek Sistemi
+            </div>
           </div>
         </div>
-        <div className="flex items-center gap-2">
+
+        <div className="flex items-center gap-2 flex-wrap">
           <Tooltip>
             <TooltipTrigger asChild>
               <div>
@@ -49,28 +54,30 @@ export function Header({ selectedBasin, onBasinChange, onExportJSON, onExportTXT
               </div>
             </TooltipTrigger>
             <TooltipContent className="max-w-[240px] text-xs">
-              Analiz edilecek sınıraşan havzayı seçin. Her havza için koordinatlar, ülkeler, nehirler, DSI/MGMM bağlantıları ve RSS anahtar kelimeleri otomatik yüklenir.
+              Analiz edilecek sınıraşan havzayı seçin. Her havza için koordinatlar, ülkeler, nehirler, DSİ/MGMM bağlantıları ve RSS anahtar kelimeleri otomatik yülenir.
             </TooltipContent>
           </Tooltip>
+
           <Tooltip>
             <TooltipTrigger asChild>
-              <Button variant="outline" size="sm" onClick={onExportJSON} className="font-mono text-xs">
-                <Download className="h-3 w-3 mr-1" />
+              <Button variant="outline" size="sm" onClick={onExportJSON} className="font-mono text-xs gap-1">
+                <Download className="h-3 w-3" />
                 JSON
               </Button>
             </TooltipTrigger>
-            <TooltipContent className="text-xs">
+            <TooltipContent className="max-w-[200px] text-xs">
               Güncel risk analiz raporunu JSON formatında indirin. Veri işleme, API entegrasyonu ve arşivleme için uygundur.
             </TooltipContent>
           </Tooltip>
+
           <Tooltip>
             <TooltipTrigger asChild>
-              <Button variant="outline" size="sm" onClick={onExportTXT} className="font-mono text-xs">
-                <FileText className="h-3 w-3 mr-1" />
+              <Button variant="outline" size="sm" onClick={onExportTXT} className="font-mono text-xs gap-1">
+                <FileText className="h-3 w-3" />
                 TXT
               </Button>
             </TooltipTrigger>
-            <TooltipContent className="text-xs">
+            <TooltipContent className="max-w-[200px] text-xs">
               Güncel risk analiz raporunu okunabilir metin formatında indirin. Brifing ve NATO/KGYS raporlaması için uygundur.
             </TooltipContent>
           </Tooltip>
