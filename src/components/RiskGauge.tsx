@@ -20,27 +20,37 @@ export function RiskGauge({ risk, loading }: RiskGaugeProps) {
   const value = risk?.vNato ?? 0;
   const status = risk?.status ?? 'NORMAL';
 
-  const statusColor = status === 'KRİTİK'
-    ? 'text-critical'
-    : status === 'UYARI'
-    ? 'text-warning'
-    : 'text-primary';
+  const statusColor =
+    status === 'KRİTİK'
+      ? 'text-critical'
+      : status === 'UYARI'
+      ? 'text-warning'
+      : 'text-primary';
 
-  const barColor = status === 'KRİTİK'
-    ? 'bg-critical'
-    : status === 'UYARI'
-    ? 'bg-warning'
-    : 'bg-primary';
+  const barColor =
+    status === 'KRİTİK'
+      ? 'bg-critical'
+      : status === 'UYARI'
+      ? 'bg-warning'
+      : 'bg-primary';
 
-  const SubMetric = ({ label, value, tooltipKey }: { label: string; value: string; tooltipKey: keyof typeof RISK_TOOLTIPS }) => (
-    <div className="bg-secondary/30 rounded p-2">
-      <div className="flex items-center gap-1 text-[9px] text-muted-foreground font-mono mb-1">
-        {label}
+  const SubMetric = ({
+    label,
+    value,
+    tooltipKey,
+  }: {
+    label: string;
+    value: string;
+    tooltipKey: keyof typeof RISK_TOOLTIPS;
+  }) => (
+    <div className="rounded bg-secondary/40 p-2">
+      <div className="flex items-center gap-1 mb-1">
+        <span className="text-[10px] text-muted-foreground font-mono">{label}</span>
         <Tooltip>
           <TooltipTrigger asChild>
-            <Info className="h-2.5 w-2.5 cursor-help opacity-60 hover:opacity-100" />
+            <Info className="h-4 w-4 text-muted-foreground hover:text-primary cursor-help flex-shrink-0 transition-colors" />
           </TooltipTrigger>
-          <TooltipContent className="max-w-[260px] text-xs">
+          <TooltipContent className="max-w-[280px] text-xs">
             {RISK_TOOLTIPS[tooltipKey]}
           </TooltipContent>
         </Tooltip>
@@ -55,7 +65,7 @@ export function RiskGauge({ risk, loading }: RiskGaugeProps) {
         ▸ BÜTÜNLEŞIK RİSK İNDEKSİ (vNato)
         <Tooltip>
           <TooltipTrigger asChild>
-            <Info className="h-3 w-3 cursor-help opacity-60 hover:opacity-100" />
+            <Info className="h-4 w-4 text-muted-foreground hover:text-primary cursor-help flex-shrink-0 transition-colors" />
           </TooltipTrigger>
           <TooltipContent className="max-w-[280px] text-xs">
             {RISK_TOOLTIPS.vNato}
@@ -71,10 +81,13 @@ export function RiskGauge({ risk, loading }: RiskGaugeProps) {
             key={value}
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.4 }}
           >
             {value.toFixed(4)}
           </motion.div>
+
           <div className={`text-xs font-mono ${statusColor} mb-3`}>● {status}</div>
+
           <div className="relative h-2 bg-secondary rounded-full overflow-hidden mb-1">
             <motion.div
               className={`h-full ${barColor} rounded-full`}
@@ -86,6 +99,7 @@ export function RiskGauge({ risk, loading }: RiskGaugeProps) {
           <div className="flex justify-between text-[9px] text-muted-foreground font-mono mb-4">
             <span>0.0</span><span>0.4</span><span>0.7</span><span>1.0</span>
           </div>
+
           <div className="grid grid-cols-2 gap-2">
             <SubMetric label="RSI" value={risk?.rsi.toFixed(4) ?? '0'} tooltipKey="rsi" />
             <SubMetric label="vClim" value={risk?.vClim.toFixed(4) ?? '0'} tooltipKey="vClim" />
